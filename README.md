@@ -1,6 +1,6 @@
 # codespaces-rust
 
-codespaces RUST simple guide
+GitHub Codespaces RUST simple guide
 
 # Install Rust
 
