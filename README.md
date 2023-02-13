@@ -20,3 +20,16 @@ chmod +x rustup.sh
 source "$HOME/.cargo/env"
 ```
 
+# Run Cargo
+
+```
+cargo new hello
+```
+
+```
+cd hello
+```
+
+```
+cargo run
+```
