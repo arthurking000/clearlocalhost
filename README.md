@@ -20,6 +20,12 @@ chmod +x rustup.sh
 source "$HOME/.cargo/env"
 ```
 
+# Update Rust
+
+```
+rustup update
+```
+
 # Run Cargo
 
 ```
