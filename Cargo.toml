@@ -1,0 +1,7 @@
+[package]
+name = "clearlocalhost"
+version = "0.1.0"
+authors = ["arthurking000 <deltab@naver.com>"]
+edition = "2021"
+
+[dependencies]

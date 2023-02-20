@@ -1,41 +1,30 @@
-# codespaces-rust
+# ClearLocalhost
 
-GitHub Codespaces RUST simple guide
+clearlocalhost deletes data from the local host in the Chrome web browser.
 
-# Install Rust
+============================================ Help information ==========================================
 
-```
-wget https://sh.rustup.rs -O rustup.sh
-```
+clearlocalhost deletes data from the local host ( possibly http://127.0.0.1 ) in the Chrome web browser.
+This can be useful when a webpage cannot be deleted from the local host.
 
-```
-chmod +x rustup.sh
-```
+Usage:
 
-```
-./rustup.sh
-```
+   "./clearlocalhost"       : Deletes data from "path1"
 
-```
-source "$HOME/.cargo/env"
-```
+   "./clearlocalhost all"   : Deletes data from "path1", "path2", "path3", "path4", and "path5"
 
-# Update Rust
+   "./clearlocalhost help"  : Print help information
 
-```
-rustup update
-```
+Try running "clearlocalhost" to clear only "path1". If that does not work, run "clearlocalhost all".
 
-# Run Cargo
+========================================================================================================
 
-```
-cargo new hello
-```
+============================================     Path List    ==========================================
 
-```
-cd hello
-```
+path1 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Service Worker\\CacheStorage"
+path2 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb"
+path3 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\IndexedDB\\http_127.0.0.1_8080.indexeddb.leveldb"
+path4 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cache\\Cache_Data"
+path5 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Code Cache\\js"
 
-```
-cargo run
-```
+========================================================================================================
