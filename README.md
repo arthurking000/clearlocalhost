@@ -1,30 +1,44 @@
 # ClearLocalhost
 
-clearlocalhost deletes data from the local host in the Chrome web browser.
+ClearLocalhost is a simple program designed to clear the cache of your local server, 
+allowing you to test web pages with a clean slate in the Chrome browser.
 
-============================================ Help information ==========================================
+## Installation
 
-clearlocalhost deletes data from the local host ( possibly http://127.0.0.1 ) in the Chrome web browser.
-This can be useful when a webpage cannot be deleted from the local host.
+To install ClearLocalhost, follow these steps:
 
-Usage:
+1. Download the latest release of ClearLocalhost from the Releases page.
+2. Extract the files to a folder on your local machine.
+3. Run the `clearlocalhost.exe` program.
 
-   "./clearlocalhost"       : Deletes data from "path1"
+## Usage
 
-   "./clearlocalhost all"   : Deletes data from "path1", "path2", "path3", "path4", and "path5"
+To use ClearLocalhost, simply run the `clearlocalhost.exe` program. 
+The program will clear the cache of your local server, allowing you to test web pages with a clean slate.
 
-   "./clearlocalhost help"  : Print help information
+1. Enter the `./clearlocalhost` command to clear the path1 data of the local host:
 
-Try running "clearlocalhost" to clear only "path1". If that does not work, run "clearlocalhost all".
+    ```
+    ./clearlocalhost
+    ```
 
-========================================================================================================
+2. Enter the `./clearlocalhost all` command to clear the path1, path2, path3, path4, and path5 data of the local host:
 
-============================================     Path List    ==========================================
+    ```
+    ./clearlocalhost all
+    ```
 
-path1 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Service Worker\\CacheStorage"
-path2 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb"
-path3 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\IndexedDB\\http_127.0.0.1_8080.indexeddb.leveldb"
-path4 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cache\\Cache_Data"
-path5 : "C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Code Cache\\js"
+3. View help by entering the `./clearlocalhost help` command:
 
-========================================================================================================
+    ```
+    ./clearlocalhost help
+    ```
+
+## Contributing
+
+If you would like to contribute to ClearLocalhost, please submit a pull request with your changes.
+
+## License
+
+ClearLocalhost is released under the MIT License or the Unlicense license (<https://unlicense.org>), whichever you prefer. 
+Please feel free to modify this as needed to fit your specific requirements.
