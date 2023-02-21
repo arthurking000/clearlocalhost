@@ -1,3 +1,4 @@
+use std::env;
 use std::env::args;
 use std::fs;
 use std::path::PathBuf;
@@ -30,6 +31,26 @@ fn print_help () {
     }
 }
 
+fn make_fullpath(path : PathBuf) -> PathBuf {
+
+    let appdata_path = env::var("APPDATA").unwrap();
+    let mut fullpath = PathBuf::from(appdata_path);
+
+    // If there is another directory after AppData, exclude it from the name.
+    let last = fullpath.file_name().unwrap().to_str().unwrap();
+    match last {
+            "AppData" => {
+            }
+            _ => {
+                fullpath.pop();
+            }
+    }
+
+    fullpath.push(path);
+
+    fullpath
+}
+
 fn clear_path (path: PathBuf) {
 
     println!("");
@@ -50,29 +71,33 @@ fn clear_path (path: PathBuf) {
 
 fn main() {
 
-    let path1: PathBuf = 
-        ["C:\\", "Users", "user", "AppData", "Local", "Google", "Chrome", "User Data", "Default", "Service Worker", "CacheStorage"]
+    let mut path1: PathBuf = 
+        ["Local", "Google", "Chrome", "User Data", "Default", "Service Worker", "CacheStorage"]
         .iter()
         .collect();
-    let path2: PathBuf = 
-        ["C:\\", "Users", "user", "AppData", "Local", "Google", "Chrome", "User Data", "Default", "Local Storage", "leveldb"]
+    let mut path2: PathBuf = 
+        ["Local", "Google", "Chrome", "User Data", "Default", "Local Storage", "leveldb"]
         .iter()
         .collect();
-    let path3: PathBuf = 
-        ["C:\\", "Users", "user", "AppData", "Local", "Google", "Chrome", "User Data", "Default", "IndexedDB", "http_127.0.0.1_8080.indexeddb.leveldb"]
+    let mut path3: PathBuf = 
+        ["Local", "Google", "Chrome", "User Data", "Default", "IndexedDB", "http_127.0.0.1_8080.indexeddb.leveldb"]
         .iter()
         .collect();
-    let path4: PathBuf = 
-        ["C:\\", "Users", "user", "AppData", "Local", "Google", "Chrome", "User Data", "Default", "Cache", "Cache_Data"]
+    let mut path4: PathBuf = 
+        ["Local", "Google", "Chrome", "User Data", "Default", "Cache", "Cache_Data"]
         .iter()
         .collect();
-    let path5: PathBuf = 
-        ["C:\\", "Users", "user", "AppData", "Local", "Google", "Chrome", "User Data", "Default", "Code Cache", "js"]
+    let mut path5: PathBuf = 
+        ["Local", "Google", "Chrome", "User Data", "Default", "Code Cache", "js"]
         .iter()
         .collect();
 
-    let arg1 = args().nth(1);
-
+    path1 = make_fullpath (path1);
+    path2 = make_fullpath (path2);
+    path3 = make_fullpath (path3);
+    path4 = make_fullpath (path4);
+    path5 = make_fullpath (path5);
+    
     println!("");
     println!(
         "============================================     Path List    ==========================================",
@@ -83,6 +108,8 @@ fn main() {
     println!("path3 : {:?}", path3);
     println!("path4 : {:?}", path4);
     println!("path5 : {:?}", path5);
+
+    let arg1 = args().nth(1);
 
     match arg1.as_deref() {
 
