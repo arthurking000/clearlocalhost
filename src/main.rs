@@ -3,51 +3,38 @@ use std::env::args;
 use std::fs;
 use std::path::PathBuf;
 
-fn print_help () {
+fn print_help() {
+    
+    let help = r#"
+============================================ Help information ==========================================
 
-    let help = [
-        "",
-        "============================================ Help information ==========================================",
-        "",
-        "clearlocalhost deletes data from the local host ( possibly http://127.0.0.1 ) in the Chrome web browser.",
-        "This can be useful when a webpage cannot be deleted from the local host.",
-        "",
-        "Usage:",
-        "",
-        "   \"./clearlocalhost\"       : Deletes data from \"path1\"",
-        "",
-        "   \"./clearlocalhost all\"   : Deletes data from \"path1\", \"path2\", \"path3\", \"path4\", and \"path5\"",
-        "",
-        "   \"./clearlocalhost help\"  : Print help information",
-        "",
-        "Try running \"clearlocalhost\" to clear only \"path1\". If that does not work, run \"clearlocalhost all\".",
-        "",
-        "========================================================================================================",
-        "",
-    ];
+clearlocalhost deletes data from the local host ( possibly http://127.0.0.1 ) in the Chrome web browser.
+This can be useful when a webpage cannot be deleted from the local host.
 
-    for line in help {
+Usage:
+
+   "./clearlocalhost"       : Deletes data from "path1"
+
+   "./clearlocalhost all"   : Deletes data from "path1", "path2", "path3", "path4", and "path5"
+
+   "./clearlocalhost help"  : Print help information
+
+Try running "clearlocalhost" to clear only "path1". If that does not work, run "clearlocalhost all".
+
+========================================================================================================
+"#;
+
+    for line in help.lines() {
         println!("{}", line);
     }
 }
 
 fn make_fullpath(path : PathBuf) -> PathBuf {
 
-    let appdata_path = env::var("APPDATA").unwrap();
+    let appdata_path = env::var("LOCALAPPDATA").unwrap();
     let mut fullpath = PathBuf::from(appdata_path);
 
-    // If there is another directory after AppData, exclude it from the name.
-    let last = fullpath.file_name().unwrap().to_str().unwrap();
-    match last {
-            "AppData" => {
-            }
-            _ => {
-                fullpath.pop();
-            }
-    }
-
     fullpath.push(path);
-
     fullpath
 }
 
@@ -57,7 +44,7 @@ fn clear_path (path: PathBuf) {
     println!(
         "========================== Deleting cache data from the local host. Please wait. =======================",
     );
-    println!("path: {:?}", path);
+    println!("remove path: {:?}", path);
 
     match fs::remove_dir_all(&path) {
         Ok(_) => {
@@ -72,23 +59,23 @@ fn clear_path (path: PathBuf) {
 fn main() {
 
     let mut path1: PathBuf = 
-        ["Local", "Google", "Chrome", "User Data", "Default", "Service Worker", "CacheStorage"]
+        ["Google", "Chrome", "User Data", "Default", "Service Worker", "CacheStorage"]
         .iter()
         .collect();
     let mut path2: PathBuf = 
-        ["Local", "Google", "Chrome", "User Data", "Default", "Local Storage", "leveldb"]
+        ["Google", "Chrome", "User Data", "Default", "Local Storage", "leveldb"]
         .iter()
         .collect();
     let mut path3: PathBuf = 
-        ["Local", "Google", "Chrome", "User Data", "Default", "IndexedDB", "http_127.0.0.1_8080.indexeddb.leveldb"]
+        ["Google", "Chrome", "User Data", "Default", "IndexedDB", "http_127.0.0.1_8080.indexeddb.leveldb"]
         .iter()
         .collect();
     let mut path4: PathBuf = 
-        ["Local", "Google", "Chrome", "User Data", "Default", "Cache", "Cache_Data"]
+        ["Google", "Chrome", "User Data", "Default", "Cache", "Cache_Data"]
         .iter()
         .collect();
     let mut path5: PathBuf = 
-        ["Local", "Google", "Chrome", "User Data", "Default", "Code Cache", "js"]
+        ["Google", "Chrome", "User Data", "Default", "Code Cache", "js"]
         .iter()
         .collect();
 
