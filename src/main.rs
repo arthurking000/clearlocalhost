@@ -13,11 +13,17 @@ This can be useful when a webpage cannot be deleted from the local host.
 
 Usage:
 
-   "./clearlocalhost"       : Deletes data from "path1"
+   "./clearlocalhost"        : Deletes data from "path1" in Google Chrome
 
-   "./clearlocalhost all"   : Deletes data from "path1", "path2", "path3", "path4", and "path5"
+   "./clearlocalhost all"    : Deletes data from "path1", "path2", "path3", "path4", and "path5"
 
-   "./clearlocalhost help"  : Print help information
+   "./clearlocalhost help"   : Print help information
+
+   "./clearlocalhost chrome" : Deletes data in Google Chrome ( = default )
+
+   "./clearlocalhost edge"   : Deletes data in Microsoft Edge
+
+   "./clearlocalhost whale"  : Deletes data in Naver Whale
 
 Try running "clearlocalhost" to clear only "path1". If that does not work, run "clearlocalhost all".
 
@@ -54,6 +60,7 @@ fn clear_path (path: PathBuf) {
             println!("Failed to remove cache files: {}", e);
         }
     }
+    println!("");
 }
 
 fn main() {
@@ -84,17 +91,7 @@ fn main() {
     path3 = make_fullpath (path3);
     path4 = make_fullpath (path4);
     path5 = make_fullpath (path5);
-    
     println!("");
-    println!(
-        "============================================     Path List    ==========================================",
-    );
-    println!("");
-    println!("path1 : {:?}", path1);
-    println!("path2 : {:?}", path2);
-    println!("path3 : {:?}", path3);
-    println!("path4 : {:?}", path4);
-    println!("path5 : {:?}", path5);
 
     let arg1 = args().nth(1);
 
@@ -103,20 +100,44 @@ fn main() {
         None => {
             print_help();
             clear_path(path1);
-            }
+        }
         Some("all") => {
             clear_path(path1);
             clear_path(path2);
             clear_path(path3);
             clear_path(path4);
             clear_path(path5);
-            }
+        }
+        Some("chrome") => {
+            let mut path1: PathBuf = 
+                ["Google", "Chrome", "User Data", "Default", "Service Worker", "CacheStorage"]
+                .iter()
+                .collect();
+            path1 = make_fullpath (path1);
+            clear_path(path1);
+        }
+        Some("edge") => {
+            let mut path1: PathBuf = 
+                ["Microsoft", "Edge", "User Data", "Default", "Service Worker", "CacheStorage"]
+                .iter()
+                .collect();
+            path1 = make_fullpath (path1);
+            clear_path(path1);
+        }
+        Some("whale") => {
+            let mut path1: PathBuf = 
+                ["Naver", "Naver Whale", "User Data", "Default", "Service Worker", "CacheStorage"]
+                .iter()
+                .collect();
+            path1 = make_fullpath (path1);
+            clear_path(path1);
+        }
         Some("help") => {
             print_help();
-            }
+        }
         _ => {
             print_help();
-            }
+        }
 
     }
 
