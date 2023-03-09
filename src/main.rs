@@ -8,7 +8,7 @@ fn print_help() {
     let help = r#"
 ============================================ Help information ==========================================
 
-ClearLocalHost v1.2.0
+ClearLocalhost v1.2.0
 
 clearlocalhost deletes data from the local host ( possibly http://127.0.0.1 ) in the Chrome web browser.
 This can be useful when a webpage cannot be deleted from the local host.
